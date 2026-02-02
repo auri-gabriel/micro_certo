@@ -187,12 +187,50 @@ class _HomeScreenState extends State<HomeScreen> {
                       controller: _packagePowerController,
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Potência indicada',
                         hintText: 'Ex: 100',
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         suffixText: '%',
                         helperText: 'Potência indicada na embalagem',
+                        prefixIcon: IconButton(
+                          icon: const Icon(Icons.help_outline),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text('Referência de Potência'),
+                                content: const Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Se a embalagem indica:',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 12),
+                                    Text('Alta: 80-100%'),
+                                    SizedBox(height: 8),
+                                    Text('Média: 50-70%'),
+                                    SizedBox(height: 8),
+                                    Text('Baixa: 30-40%'),
+                                    SizedBox(height: 8),
+                                    Text('Descongelar: 10-20%'),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Entendi'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          tooltip: 'Ver referência de potência',
+                        ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
