@@ -14,7 +14,7 @@ class MicroCertoApp extends StatelessWidget {
       title: 'MicroCerto',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
       home: const SplashScreen(),
