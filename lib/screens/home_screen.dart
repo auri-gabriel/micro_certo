@@ -213,9 +213,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Expanded(
                           child: OutlinedButton(
                             onPressed: _clear,
-                            child: const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text('Limpar'),
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                            ),
+                            child: const Text(
+                              'Limpar',
+                              style: TextStyle(fontSize: 18),
                             ),
                           ),
                         ),
@@ -224,12 +227,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           flex: 2,
                           child: FilledButton(
                             onPressed: _calculate,
-                            child: const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                'Calcular',
-                                style: TextStyle(fontSize: 18),
-                              ),
+                            style: FilledButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                            ),
+                            child: const Text(
+                              'Calcular',
+                              style: TextStyle(fontSize: 18),
                             ),
                           ),
                         ),
