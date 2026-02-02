@@ -38,7 +38,8 @@ MicroCerto é um aplicativo Flutter simples e eficiente que calcula automaticame
 
 Escolha a opção mais conveniente e pronto! Comida perfeitamente aquecida! 🎉
 
-<!-- ## 🎨 Screenshots -->
+## 🎨 Screenshots
+<img width="540" height="1200" alt="Screenshot_1770061912" src="https://github.com/user-attachments/assets/7fe6837f-6194-4097-90d7-e378e7a72a7a" />
 
 ## 👨‍💻 Autor
 
