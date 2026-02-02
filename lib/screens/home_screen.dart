@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../utils/preferences_helper.dart';
 import '../utils/microwave_calculator.dart';
-import '../utils/format_helper.dart';
 import '../utils/time_input_helper.dart';
 import 'settings_screen.dart';
+import 'result_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,8 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int? _microwavePower;
   int? _referencePower;
-  double? _adjustedTime;
-  int? _adjustedPower;
 
   @override
   void initState() {
@@ -47,26 +45,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final packagePowerPercent = int.parse(_packagePowerController.text);
 
-    setState(() {
-      _adjustedTime = MicrowaveCalculator.calculateAdjustedTime(
-        packageTime: packageTime,
-        packagePowerPercent: packagePowerPercent,
-        referencePower: _referencePower!,
-        microwavePower: _microwavePower!,
-      );
+    final adjustedTime = MicrowaveCalculator.calculateAdjustedTime(
+      packageTime: packageTime,
+      packagePowerPercent: packagePowerPercent,
+      referencePower: _referencePower!,
+      microwavePower: _microwavePower!,
+    );
 
-      _adjustedPower = MicrowaveCalculator.calculateAdjustedPower(
-        packagePowerPercent: packagePowerPercent,
-        referencePower: _referencePower!,
-        microwavePower: _microwavePower!,
-      );
-    });
+    final adjustedPower = MicrowaveCalculator.calculateAdjustedPower(
+      packagePowerPercent: packagePowerPercent,
+      referencePower: _referencePower!,
+      microwavePower: _microwavePower!,
+    );
+
+    // Fecha o teclado antes de navegar
+    FocusScope.of(context).unfocus();
+
+    // Navega para a tela de resultado
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => ResultScreen(
+          adjustedTime: adjustedTime,
+          adjustedPower: adjustedPower,
+          packageTime: _packageTimeController.text,
+        ),
+      ),
+    );
   }
 
   void _clear() {
     setState(() {
-      _adjustedTime = null;
-      _adjustedPower = null;
       _packageTimeController.clear();
       _packagePowerController.text = '100';
     });
@@ -276,52 +284,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 32),
-
-                    // Resultado
-                    if (_adjustedTime != null && _adjustedPower != null)
-                      Card(
-                        elevation: 4,
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        child: Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            children: [
-                              const Icon(
-                                Icons.check_circle,
-                                size: 48,
-                                color: Colors.green,
-                              ),
-                              const SizedBox(height: 16),
-                              const Text(
-                                'Use uma destas opções:',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              Text(
-                                '${FormatHelper.formatTimeToMinutesSeconds(_adjustedTime!)} em 100%',
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              const Text('ou', style: TextStyle(fontSize: 16)),
-                              const SizedBox(height: 8),
-                              Text(
-                                '${formatDecimalToTime(parseTimeToDecimal(_packageTimeController.text)!)} em $_adjustedPower%',
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                   ],
                 ),
               ),
