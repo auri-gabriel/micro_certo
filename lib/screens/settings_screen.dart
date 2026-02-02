@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../utils/preferences_helper.dart';
 
-/// Tela de configurações
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 

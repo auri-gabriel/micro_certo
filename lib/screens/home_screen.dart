@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import '../utils/preferences_helper.dart';
 import '../utils/microwave_calculator.dart';
 import '../utils/format_helper.dart';
+import '../utils/time_input_helper.dart';
 import 'settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -41,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void _calculate() {
     if (!_formKey.currentState!.validate()) return;
 
-    final packageTime = double.parse(
-      _packageTimeController.text.replaceAll(',', '.'),
-    );
+    final packageTime = parseTimeToDecimal(_packageTimeController.text);
+    if (packageTime == null) return;
+
     final packagePowerPercent = int.parse(_packagePowerController.text);
 
     setState(() {
@@ -69,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
       _packageTimeController.clear();
       _packagePowerController.text = '100';
     });
+    _formKey.currentState?.reset();
+    _packagePowerController.text = '100';
   }
 
   void _openSettings() {
@@ -158,24 +161,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Input tempo da embalagem
                     TextFormField(
                       controller: _packageTimeController,
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true,
-                      ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [TimeInputFormatter()],
                       decoration: const InputDecoration(
                         labelText: 'Tempo indicado',
-                        hintText: 'Ex: 3.5',
+                        hintText: 'Ex: 3:30',
                         border: OutlineInputBorder(),
-                        suffixText: 'min',
+                        helperText: 'Formato: M:SS ou MM:SS',
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Digite o tempo';
                         }
-                        final time = double.tryParse(
-                          value.replaceAll(',', '.'),
-                        );
+                        final time = parseTimeToDecimal(value);
                         if (time == null || time <= 0) {
-                          return 'Digite um valor válido';
+                          return 'Digite um tempo válido';
                         }
                         return null;
                       },
@@ -312,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const Text('ou', style: TextStyle(fontSize: 16)),
                               const SizedBox(height: 8),
                               Text(
-                                '${_packageTimeController.text} min em $_adjustedPower%',
+                                '${formatDecimalToTime(parseTimeToDecimal(_packageTimeController.text)!)} em $_adjustedPower%',
                                 style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
