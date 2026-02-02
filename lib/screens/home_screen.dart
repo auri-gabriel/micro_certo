@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../utils/preferences_helper.dart';
 import '../utils/microwave_calculator.dart';
+import '../utils/format_helper.dart';
 import 'settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -260,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                '${_adjustedTime!.toStringAsFixed(1)} min em 100%',
+                                '${FormatHelper.formatTimeToMinutesSeconds(_adjustedTime!)} em 100%',
                                 style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,

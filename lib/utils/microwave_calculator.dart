@@ -23,6 +23,8 @@ class MicrowaveCalculator {
   /// [packagePowerPercent] - Potência indicada na embalagem (em %)
   /// [referencePower] - Potência de referência padrão (em watts)
   /// [microwavePower] - Potência do micro-ondas do usuário (em watts)
+  ///
+  /// Retorna a potência arredondada para o múltiplo de 10 mais próximo
   static int calculateAdjustedPower({
     required int packagePowerPercent,
     required int referencePower,
@@ -32,6 +34,9 @@ class MicrowaveCalculator {
     final packagePowerWatts = (referencePower * packagePowerPercent) / 100;
 
     // Potência ajustada = (potencia_embalagem / potencia_microondas) × 100
-    return ((packagePowerWatts / microwavePower) * 100).round();
+    final exactPower = ((packagePowerWatts / microwavePower) * 100).round();
+
+    // Arredonda para o múltiplo de 10 mais próximo (mínimo 10%, máximo 100%)
+    return ((exactPower / 10).round() * 10).clamp(10, 100);
   }
 }
