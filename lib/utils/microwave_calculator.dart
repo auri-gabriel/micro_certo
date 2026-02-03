@@ -1,6 +1,6 @@
 class MicrowaveCalculator {
   static double calculateAdjustedTime({
-    required double packageTime,
+    required int packageTime,
     required int packagePowerPercent,
     required int referencePower,
     required int microwavePower,

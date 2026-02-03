@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/format_helper.dart';
 
-/// Tela de resultado dos cálculos
 class ResultScreen extends StatelessWidget {
   final double adjustedTime;
   final int adjustedPower;

@@ -1,7 +1,7 @@
 class FormatHelper {
-  static String formatTimeToMinutesSeconds(double decimalMinutes) {
-    final minutes = decimalMinutes.floor();
-    final seconds = ((decimalMinutes - minutes) * 60).round();
+  static String formatTimeToMinutesSeconds(double totalSeconds) {
+    final minutes = (totalSeconds / 60).floor();
+    final seconds = (totalSeconds % 60).round();
 
     return '$minutes:${seconds.toString().padLeft(2, '0')}';
   }

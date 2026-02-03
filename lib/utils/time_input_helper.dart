@@ -35,7 +35,7 @@ class TimeInputFormatter extends TextInputFormatter {
   }
 }
 
-double? parseTimeToDecimal(String time) {
+int? parseTimeToSeconds(String time) {
   if (time.isEmpty) return null;
 
   if (time.contains(':')) {
@@ -48,11 +48,11 @@ double? parseTimeToDecimal(String time) {
     if (minutes == null || seconds == null) return null;
     if (seconds >= 60) return null;
 
-    return minutes + (seconds / 60);
+    return (minutes * 60) + seconds;
   } else {
     final seconds = int.tryParse(time);
     if (seconds == null) return null;
-    return seconds / 60;
+    return seconds;
   }
 }
 

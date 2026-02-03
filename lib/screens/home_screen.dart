@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _calculate() {
     if (!_formKey.currentState!.validate()) return;
 
-    final packageTime = parseTimeToDecimal(_packageTimeController.text);
+    final packageTime = parseTimeToSeconds(_packageTimeController.text);
     if (packageTime == null) return;
 
     final packagePowerPercent = int.parse(_packagePowerController.text);
@@ -174,13 +174,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         labelText: 'Tempo indicado',
                         hintText: 'Ex: 3:30',
                         border: OutlineInputBorder(),
-                        helperText: 'Formato: M:SS ou MM:SS',
+                        helperText: 'Formato: SS, M:SS ou MM:SS',
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Digite o tempo';
                         }
-                        final time = parseTimeToDecimal(value);
+                        final time = parseTimeToSeconds(value);
                         if (time == null || time <= 0) {
                           return 'Digite um tempo válido';
                         }
