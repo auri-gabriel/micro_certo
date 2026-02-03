@@ -74,12 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _clear() {
+    _formKey.currentState?.reset();
     setState(() {
       _packageTimeController.clear();
       _packagePowerController.text = '100';
     });
-    _formKey.currentState?.reset();
-    _packagePowerController.text = '100';
   }
 
   void _openSettings() {
