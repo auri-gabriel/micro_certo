@@ -50,7 +50,9 @@ double? parseTimeToDecimal(String time) {
 
     return minutes + (seconds / 60);
   } else {
-    return double.tryParse(time);
+    final seconds = int.tryParse(time);
+    if (seconds == null) return null;
+    return seconds / 60;
   }
 }
 
