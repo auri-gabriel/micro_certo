@@ -45,7 +45,11 @@ class _InitialSetupScreenState extends State<InitialSetupScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Icon(Icons.microwave, size: 80, color: Colors.orange),
+              Icon(
+                Icons.microwave,
+                size: 80,
+                color: Theme.of(context).colorScheme.primary,
+              ),
               const SizedBox(height: 32),
               const Text(
                 'Configure seu micro-ondas',
