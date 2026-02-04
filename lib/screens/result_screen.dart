@@ -24,8 +24,6 @@ class ResultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.check_circle, size: 60, color: Colors.green),
-            const SizedBox(height: 24),
             const Text(
               'Use uma destas opções:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
