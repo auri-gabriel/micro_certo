@@ -19,6 +19,6 @@ class MicrowaveCalculator {
 
     final exactPower = ((packagePowerWatts / microwavePower) * 100).round();
 
-    return ((exactPower / 10).round() * 10).clamp(10, 100);
+    return ((exactPower / 10).ceil() * 10).clamp(10, 100);
   }
 }
