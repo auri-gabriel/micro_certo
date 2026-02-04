@@ -5,6 +5,7 @@ class ResultCard extends StatelessWidget {
   final String timeText;
   final String powerText;
   final Color? backgroundColor;
+  final bool isRecommended;
 
   const ResultCard({
     super.key,
@@ -12,6 +13,7 @@ class ResultCard extends StatelessWidget {
     required this.timeText,
     required this.powerText,
     this.backgroundColor,
+    this.isRecommended = false,
   });
 
   @override
@@ -23,6 +25,33 @@ class ResultCard extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            if (isRecommended)
+              Container(
+                margin: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.star, size: 14, color: Colors.white),
+                    SizedBox(width: 4),
+                    Text(
+                      'Recomendado',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             Text(
               optionLabel,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),

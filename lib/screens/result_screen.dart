@@ -35,6 +35,7 @@ class ResultScreen extends StatelessWidget {
 
             // Primeira opção
             ResultCard(
+              isRecommended: true,
               optionLabel: 'Opção 1',
               timeText: FormatHelper.formatTimeToMinutesSeconds(adjustedTime),
               powerText: 'em 100%',
