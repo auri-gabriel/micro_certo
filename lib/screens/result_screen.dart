@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/format_helper.dart';
+import '../widgets/result_card.dart';
 
 class ResultScreen extends StatelessWidget {
   final double adjustedTime;
@@ -33,39 +34,11 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Primeira opção
-            Card(
-              elevation: 4,
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Opção 1',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      FormatHelper.formatTimeToMinutesSeconds(adjustedTime),
-                      style: const TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'em 100%',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            ResultCard(
+              optionLabel: 'Opção 1',
+              timeText: FormatHelper.formatTimeToMinutesSeconds(adjustedTime),
+              powerText: 'em 100%',
+              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
             ),
             const SizedBox(height: 16),
 
@@ -78,39 +51,11 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Segunda opção
-            Card(
-              elevation: 4,
-              color: Theme.of(context).colorScheme.secondaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Opção 2',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      packageTime,
-                      style: const TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'em $adjustedPower%',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            ResultCard(
+              optionLabel: 'Opção 2',
+              timeText: packageTime,
+              powerText: 'em $adjustedPower%',
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             ),
             const SizedBox(height: 32),
 
