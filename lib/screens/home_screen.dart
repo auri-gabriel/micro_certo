@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (_) => ResultScreen(
           adjustedTime: adjustedTime,
           adjustedPower: adjustedPower,
-          packageTime: _packageTimeController.text,
+          packageTime: packageTime,
         ),
       ),
     );

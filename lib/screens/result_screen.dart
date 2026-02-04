@@ -3,9 +3,9 @@ import '../utils/format_helper.dart';
 import '../widgets/result_card.dart';
 
 class ResultScreen extends StatelessWidget {
-  final double adjustedTime;
+  final int adjustedTime;
   final int adjustedPower;
-  final String packageTime;
+  final int packageTime;
 
   const ResultScreen({
     super.key,
@@ -53,7 +53,7 @@ class ResultScreen extends StatelessWidget {
             // Segunda opção
             ResultCard(
               optionLabel: 'Opção 2',
-              timeText: packageTime,
+              timeText: FormatHelper.formatTimeToMinutesSeconds(packageTime),
               powerText: 'em $adjustedPower%',
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             ),

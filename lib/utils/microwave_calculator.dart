@@ -1,5 +1,5 @@
 class MicrowaveCalculator {
-  static double calculateAdjustedTime({
+  static int calculateAdjustedTime({
     required int packageTime,
     required int packagePowerPercent,
     required int referencePower,
@@ -7,7 +7,7 @@ class MicrowaveCalculator {
   }) {
     final packagePowerWatts = (referencePower * packagePowerPercent) / 100;
 
-    return packageTime * (packagePowerWatts / microwavePower);
+    return (packageTime * (packagePowerWatts / microwavePower)).ceil();
   }
 
   static int calculateAdjustedPower({

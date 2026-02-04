@@ -1,5 +1,5 @@
 class FormatHelper {
-  static String formatTimeToMinutesSeconds(double totalSeconds) {
+  static String formatTimeToMinutesSeconds(int totalSeconds) {
     final minutes = (totalSeconds / 60).floor();
     final seconds = (totalSeconds % 60).round();
 
