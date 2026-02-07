@@ -7,7 +7,11 @@ class MicrowaveCalculator {
   }) {
     final packagePowerWatts = (referencePower * packagePowerPercent) / 100;
 
-    return (packageTime * (packagePowerWatts / microwavePower)).ceil();
+    final baseTime = packageTime * (packagePowerWatts / microwavePower);
+
+    final safetyMargin = microwavePower > packagePowerWatts ? 1.30 : 1.05;
+
+    return (baseTime * safetyMargin).ceil();
   }
 
   static int calculateAdjustedPower({
